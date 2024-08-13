@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/places")
+@CrossOrigin("https://nearby-places-fe.vercel.app/")
 public class PlaceController {
     private final PlaceService placeService;
 
