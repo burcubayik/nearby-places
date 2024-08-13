@@ -1,10 +1,10 @@
 package com.example.nearbyplaces.controller;
 
+import com.example.nearbyplaces.dto.GooglePlacesResponse;
 import com.example.nearbyplaces.dto.PlaceDto;
 import com.example.nearbyplaces.service.PlaceService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,9 +17,11 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    @GetMapping()
-    public List<PlaceDto> searchPlaces(PlaceDto placeDto){
-        return placeService.searchAndSavePlace(placeDto);
+    @PostMapping()
+    public ResponseEntity<GooglePlacesResponse> searchPlaces(@RequestBody PlaceDto placeDto){
+
+           return ResponseEntity.ok(placeService.findResponseByGooglePlacesApi(placeDto)) ;
+
     }
 
 }
